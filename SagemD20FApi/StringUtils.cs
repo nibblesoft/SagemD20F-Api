@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HackSagemRouter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,19 @@ namespace HackSagemRouter.Utils
         public static string PasswordToBase64(string pwd)
         {
             return Convert.ToBase64String(Encoding.ASCII.GetBytes(pwd));
+        }
+
+        public static IList<DeviceInfo> ParseDeviceInfos(string contentString)
+        {
+            const string trtd = "<tr><td>";
+            const string tdtrClose = "</td></tr>";
+            int idx = contentString.IndexOf(trtd, StringComparison.Ordinal);
+            while (idx >= 0)
+            {
+                /// int
+                break;
+            }
+            return null;
         }
     }
 }

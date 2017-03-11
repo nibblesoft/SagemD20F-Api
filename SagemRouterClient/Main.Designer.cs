@@ -34,6 +34,7 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonReboot = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,12 @@
             this.buttonAddMac = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxMac = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -54,7 +60,7 @@
             this.groupBox1.Controls.Add(this.buttonReboot);
             this.groupBox1.Location = new System.Drawing.Point(19, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(392, 78);
+            this.groupBox1.Size = new System.Drawing.Size(308, 78);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General:";
@@ -70,7 +76,7 @@
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(299, 19);
+            this.buttonRefresh.Location = new System.Drawing.Point(119, 29);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
             this.buttonRefresh.TabIndex = 1;
@@ -80,7 +86,7 @@
             // 
             // buttonReboot
             // 
-            this.buttonReboot.Location = new System.Drawing.Point(299, 48);
+            this.buttonReboot.Location = new System.Drawing.Point(210, 29);
             this.buttonReboot.Name = "buttonReboot";
             this.buttonReboot.Size = new System.Drawing.Size(75, 23);
             this.buttonReboot.TabIndex = 0;
@@ -90,24 +96,33 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.buttonRemoveMac);
             this.groupBox2.Controls.Add(this.buttonAddMac);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.textBoxMac);
-            this.groupBox2.Location = new System.Drawing.Point(19, 118);
+            this.groupBox2.Location = new System.Drawing.Point(333, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(392, 200);
+            this.groupBox2.Size = new System.Drawing.Size(379, 158);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mac:";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(22, 428);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "By: Ivandro Ismael";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.radioButton1);
             this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Location = new System.Drawing.Point(20, 109);
+            this.groupBox3.Location = new System.Drawing.Point(20, 75);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(173, 73);
             this.groupBox3.TabIndex = 6;
@@ -138,7 +153,7 @@
             // 
             // buttonRemoveMac
             // 
-            this.buttonRemoveMac.Location = new System.Drawing.Point(299, 75);
+            this.buttonRemoveMac.Location = new System.Drawing.Point(229, 23);
             this.buttonRemoveMac.Name = "buttonRemoveMac";
             this.buttonRemoveMac.Size = new System.Drawing.Size(75, 23);
             this.buttonRemoveMac.TabIndex = 3;
@@ -148,7 +163,7 @@
             // 
             // buttonAddMac
             // 
-            this.buttonAddMac.Location = new System.Drawing.Point(208, 75);
+            this.buttonAddMac.Location = new System.Drawing.Point(148, 23);
             this.buttonAddMac.Name = "buttonAddMac";
             this.buttonAddMac.Size = new System.Drawing.Size(75, 23);
             this.buttonAddMac.TabIndex = 2;
@@ -169,23 +184,65 @@
             // 
             this.textBoxMac.Location = new System.Drawing.Point(20, 49);
             this.textBoxMac.Name = "textBoxMac";
-            this.textBoxMac.Size = new System.Drawing.Size(354, 20);
+            this.textBoxMac.Size = new System.Drawing.Size(284, 20);
             this.textBoxMac.TabIndex = 0;
             // 
-            // label2
+            // listView1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 181);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "By: Ivandro Ismael";
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(19, 186);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(693, 239);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Hostname";
+            this.columnHeader1.Width = 147;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "MAC Address";
+            this.columnHeader2.Width = 168;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "IP Address";
+            this.columnHeader3.Width = 178;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Expires In";
+            this.columnHeader4.Width = 189;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 167);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Connected users:";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 330);
+            this.ClientSize = new System.Drawing.Size(724, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -198,6 +255,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -216,6 +274,12 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button buttonDisconnect;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label label3;
     }
 }
 
