@@ -58,7 +58,7 @@ namespace HackSagemRouter
 
         public async Task<string> GetSeasionKeyAsync()
         {
-            var response = _httpClient.GetAsync("wlmacflt.cmd?action=view").Result;
+            var response = /*await*/ _httpClient.GetAsync("wlmacflt.cmd?action=view").Result;
 
             //var responseCookies = _handler.CookieContainer.GetCookies(new Uri("http://192.168.1.1/wlmacflt.cmd?action=view")).Cast<Cookie>();
             //foreach (var cookies in responseCookies)

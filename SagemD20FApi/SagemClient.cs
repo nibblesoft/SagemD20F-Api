@@ -9,6 +9,7 @@ namespace HackSagemRouter
     using HackSagemRouter.Models;
     using System.Collections;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using Utils;
 
     public class SagemClient
@@ -21,7 +22,7 @@ namespace HackSagemRouter
 
         // NOTE: This password was processed!
         public SagemClient(string password = "YWRtaW46My4xNDE1") :
-            this(password, new RouterConnection(RouterAddress, new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", password)))
+            this(password, new RouterConnection(RouterAddress, new AuthenticationHeaderValue("Basic", password)))
         {
         }
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HackSagemRouter.Models
 {
+    /// <summary>
+    /// ARP (The address resolution protocol) table devices.
+    /// </summary>
     public class DeviceInfo
     {
         public DeviceInfo(string hostname, string macAddress, string ipAddress, DateTime expiresIn)
