@@ -77,3 +77,19 @@ namespace HackSagemRouter
 
     }
 }
+
+
+You need dat cookie jar
+{
+	CookieContainer cookies = new CookieContainer();
+	HttpClientHandler handler = new HttpClientHandler();
+	handler.CookieContainer = cookies;
+
+	HttpClient client = new HttpClient(handler);
+	HttpResponseMessage response = client.GetAsync("http://google.com").Result;
+
+	Uri uri = new Uri("http://google.com");
+	IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+	foreach (Cookie cookie in responseCookies)
+		Console.WriteLine(cookie.Name + ": " + cookie.Value);
+}

@@ -19,7 +19,8 @@ namespace HackSagemRouter
         public RouterConnection(Uri uri, AuthenticationHeaderValue auth)
         {
             var baseAddress = new Uri("http://example.com");
-            _handler.CookieContainer = new CookieContainer(); ;
+            _handler.CookieContainer = new CookieContainer();
+            //_handler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             _httpClient = new HttpClient(/*Handler*/) { BaseAddress = uri };
             //_cookieContainer.Add(baseAddress, new Cookie("sagem", "sagem_value"));
             _httpClient.DefaultRequestHeaders.Authorization = auth;
@@ -50,14 +51,14 @@ namespace HackSagemRouter
             //requestHeaders.Add("")
         }
 
-        public async Task SendAsync(string requestParams) // actionQuery
+        public async Task<HttpResponseMessage> SendAsync(string requestParams) // actionQuery
         {
-            await _httpClient.GetAsync(requestParams).ConfigureAwait(false);
+            return await _httpClient.GetAsync(requestParams).ConfigureAwait(false);
         }
 
         public async Task<string> GetSeasionKeyAsync()
         {
-            var response = _httpClient.GetAsync("wlmacflt.cmd?action=view").Result;
+            var response = /*await*/ _httpClient.GetAsync("wlmacflt.cmd?action=view").Result;
 
             //var responseCookies = _handler.CookieContainer.GetCookies(new Uri("http://192.168.1.1/wlmacflt.cmd?action=view")).Cast<Cookie>();
             //foreach (var cookies in responseCookies)

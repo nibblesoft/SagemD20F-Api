@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace HackSagemRouter
 {
+    using HackSagemRouter.Models;
+    using System.Collections;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using Utils;
 
     public class SagemClient
@@ -14,9 +18,11 @@ namespace HackSagemRouter
         private readonly RouterConnection RouterConnection;
         private readonly string _password;
 
+        public IEnumerable<DeviceInfo> DeviceInfos { get; }
+
         // NOTE: This password was processed!
         public SagemClient(string password = "YWRtaW46My4xNDE1") :
-            this(password, new RouterConnection(RouterAddress, new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", password)))
+            this(password, new RouterConnection(RouterAddress, new AuthenticationHeaderValue("Basic", password)))
         {
         }
 
@@ -59,6 +65,12 @@ namespace HackSagemRouter
         public async Task TestConnectionAsync()
         {
             await RouterConnection.SendAsync(string.Empty).ConfigureAwait(false);
+        }
+
+        public async Task<IList<DeviceInfo>> GetDeviesInfoAsync()
+        {
+            string contentString = await (await RouterConnection.SendAsync(ActionUrls.DeviceInfo)).Content.ReadAsStringAsync();
+            return StringUtils.ParseDeviceInfos(contentString);
         }
 
     }

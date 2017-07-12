@@ -15,7 +15,8 @@ namespace HackSagemRouter
         public const string ActionRefresh = "wancfg.cmd?action=refresh";
         public const string ActionAddMac = "?action=add";
         public const string ActionRemoveMac = "?action=remove";
-        
+        public const string DeviceInfo = "dhcpinfo.html";
+
         // public const string Disconect = "/wancfg.cmd?action=pppinterconn&pppcmd=Disconnect"
         // GET /wancfg.cmd?action=pppinterconn&pppcmd=Connect&pppUserName=cai0013&pppPassword=cai0013&dddd=kkkk HTTP/1.1
 
