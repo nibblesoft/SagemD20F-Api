@@ -13,12 +13,22 @@ namespace SagemRouterClient
 {
     public partial class Main : Form
     {
-        private readonly SagemClient _sagemClient;
+        private SagemClient _sagemClient;
 
         public Main()
         {
             InitializeComponent();
-            _sagemClient = new SagemClient();
+            using (var loginForm = new LoginForm())
+            {
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    _sagemClient = new SagemClient(loginForm.UserName, loginForm.Password);
+                }
+                else
+                {
+                    MessageBox.Show("Router authentification canceled");
+                }
+            }
         }
 
         private async void buttonReboot_Click(object sender, EventArgs e)
@@ -33,12 +43,32 @@ namespace SagemRouterClient
 
         private async void buttonAddMac_Click(object sender, EventArgs e)
         {
-            await _sagemClient.AddMacAddressAsync(textBoxMac.Text).ConfigureAwait(false);
+            string macString = textBoxMac.Text;
+            macString = macString.Trim();
+            await _sagemClient.AddMacAddressAsync(macString).ConfigureAwait(false);
         }
 
         private async void buttonRemoveMac_Click(object sender, EventArgs e)
         {
-            await _sagemClient.RemoveMacAddress(textBoxMac.Text).ConfigureAwait(false);
+            string macString = textBoxMac.Text;
+            macString = macString.Trim();
+            await _sagemClient.RemoveMacAddress(macString).ConfigureAwait(false);
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            using (var loginForm = new LoginForm())
+            {
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    // TODO: Use property to avoit creating new instance every time we re-authenticate
+                    _sagemClient = new SagemClient(loginForm.UserName, loginForm.Password);
+                }
+                else
+                {
+                    MessageBox.Show("Router authentification canceled");
+                }
+            }
         }
     }
 }

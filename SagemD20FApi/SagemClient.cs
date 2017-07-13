@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HackSagemRouter
+﻿namespace HackSagemRouter
 {
     using HackSagemRouter.Models;
-    using System.Collections;
-    using System.Net.Http;
+    using System;
+    using System.Collections.Generic;
     using System.Net.Http.Headers;
+    using System.Threading.Tasks;
     using Utils;
 
     public class SagemClient
     {
         private static readonly Uri RouterAddress = new Uri("http://192.168.1.1/");
         private readonly RouterConnection RouterConnection;
-        private readonly string _password;
+
+        // ROUTER LOGIN ID
+        public string UserName { get; set; }
+        public string Password { get; set; }
 
         public IEnumerable<DeviceInfo> DeviceInfos { get; }
 
-        // NOTE: This password was processed!
-        public SagemClient(string password = "YWRtaW46My4xNDE1") :
-            this(password, new RouterConnection(RouterAddress, new AuthenticationHeaderValue("Basic", password)))
+        public SagemClient(string userName, string password)
         {
-        }
+            UserName = userName;
+            Password = password;
 
-        public SagemClient(string password, RouterConnection routerConnection)
-        {
-            _password = password;
-            RouterConnection = routerConnection;
+            string hashedAuth = StringUtils.EncodeToBase64(UserName, Password);
+            RouterConnection = new RouterConnection(RouterAddress, new AuthenticationHeaderValue("Basic", hashedAuth));
         }
 
         public void EnableMacFiltering()
@@ -48,23 +43,23 @@ namespace HackSagemRouter
 
         public async Task RemoveMacAddress(string macAddress)
         {
-            string seasionKey = await RouterConnection.GetSeasionKeyAsync();
+            string seasionKey = await RouterConnection.GetSeasionKeyAsync().ConfigureAwait(false);
             await RouterConnection.SendAsync(ActionUrls.MacAddressRemove(macAddress, seasionKey)).ConfigureAwait(false);
         }
 
-        public async Task RebootAsync()
+        public Task RebootAsync()
         {
-            await RouterConnection.SendAsync(ActionUrls.ActionRebot).ConfigureAwait(false);
+            return RouterConnection.SendAsync(ActionUrls.ActionRebot);
         }
 
-        public async Task RefreshAsync()
+        public Task RefreshAsync()
         {
-            await RouterConnection.SendAsync(ActionUrls.ActionRefresh).ConfigureAwait(false);
+            return RouterConnection.SendAsync(ActionUrls.ActionRefresh);
         }
 
-        public async Task TestConnectionAsync()
+        public Task TestConnectionAsync()
         {
-            await RouterConnection.SendAsync(string.Empty).ConfigureAwait(false);
+            return RouterConnection.SendAsync(string.Empty);
         }
 
         public async Task<IList<DeviceInfo>> GetDeviesInfoAsync()

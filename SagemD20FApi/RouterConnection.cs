@@ -65,7 +65,8 @@ namespace HackSagemRouter
             //{
             //}
 
-            var htmlPage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            // note: this needs to be fast because if page refresh a new session key will be generated
+            string htmlPage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return RegexSeasionKey.Match(htmlPage).Groups[1].Value;
         }
     }
