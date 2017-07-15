@@ -50,10 +50,15 @@
             this.buttonReAuthenticate = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.labelStatus = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBoxConfigs = new System.Windows.Forms.TextBox();
+            this.buttonBrowseConfiFile = new System.Windows.Forms.Button();
+            this.buttonUploadConfig = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -99,6 +104,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.buttonRemoveMac);
             this.groupBox2.Controls.Add(this.buttonAddMac);
@@ -255,6 +261,45 @@
             this.labelStatus.TabIndex = 11;
             this.labelStatus.Text = "Idle: Status";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.buttonUploadConfig);
+            this.groupBox5.Controls.Add(this.buttonBrowseConfiFile);
+            this.groupBox5.Controls.Add(this.textBoxConfigs);
+            this.groupBox5.Location = new System.Drawing.Point(199, 75);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(174, 73);
+            this.groupBox5.TabIndex = 7;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Configurations:";
+            // 
+            // textBoxConfigs
+            // 
+            this.textBoxConfigs.Location = new System.Drawing.Point(6, 21);
+            this.textBoxConfigs.Name = "textBoxConfigs";
+            this.textBoxConfigs.Size = new System.Drawing.Size(131, 20);
+            this.textBoxConfigs.TabIndex = 0;
+            // 
+            // buttonBrowseConfiFile
+            // 
+            this.buttonBrowseConfiFile.Location = new System.Drawing.Point(143, 20);
+            this.buttonBrowseConfiFile.Name = "buttonBrowseConfiFile";
+            this.buttonBrowseConfiFile.Size = new System.Drawing.Size(25, 23);
+            this.buttonBrowseConfiFile.TabIndex = 1;
+            this.buttonBrowseConfiFile.Text = ",..";
+            this.buttonBrowseConfiFile.UseVisualStyleBackColor = true;
+            this.buttonBrowseConfiFile.Click += new System.EventHandler(this.buttonBrowseConfiFile_Click);
+            // 
+            // buttonUploadConfig
+            // 
+            this.buttonUploadConfig.Location = new System.Drawing.Point(6, 44);
+            this.buttonUploadConfig.Name = "buttonUploadConfig";
+            this.buttonUploadConfig.Size = new System.Drawing.Size(89, 23);
+            this.buttonUploadConfig.TabIndex = 2;
+            this.buttonUploadConfig.Text = "Upload configs";
+            this.buttonUploadConfig.UseVisualStyleBackColor = true;
+            this.buttonUploadConfig.Click += new System.EventHandler(this.ButtonUploadConfigClickAsync);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,6 +322,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,6 +352,10 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox checkBoxMacFiltering;
         private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button buttonUploadConfig;
+        private System.Windows.Forms.Button buttonBrowseConfiFile;
+        private System.Windows.Forms.TextBox textBoxConfigs;
     }
 }
 

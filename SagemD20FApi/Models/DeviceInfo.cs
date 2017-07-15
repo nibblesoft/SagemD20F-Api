@@ -15,9 +15,21 @@ namespace HackSagemRouter.Models
             ExpiresIn = expiresIn;
         }
 
+        /// <summary>
+        /// Hostname of the client.
+        /// </summary>
         public string Hostname { get; }
+        /// <summary>
+        /// Mac address of the client.
+        /// </summary>
         public string MacAddress { get; }
+        /// <summary>
+        /// IP address of the client.
+        /// </summary>
         public string IpAddress { get; }
+        /// <summary>
+        /// Expiry date of the current IP address
+        /// </summary>
         public DateTime ExpiresIn { get; }
     }
 }

@@ -122,5 +122,20 @@ namespace SagemRouterClient
                 _timer.Start();
             }
         }
+
+        private void buttonBrowseConfiFile_Click(object sender, EventArgs e)
+        {
+            // backupsettings.conf
+            using (var ofd = new OpenFileDialog() { Filter = "Router config|*.conf" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxConfigs.Text = ofd.FileName;
+                }
+            }
+        }
+
+        private async void ButtonUploadConfigClickAsync(object sender, EventArgs e) =>
+            await _sagemClient.UploadConfigsAsync(textBoxConfigs.Text).ConfigureAwait(false);
     }
 }

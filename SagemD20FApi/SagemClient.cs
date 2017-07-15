@@ -85,5 +85,13 @@
             return null;
         }
 
+        /// <summary>
+        /// Uploads configuration file to router server and reboot
+        /// </summary>
+        /// <param name="fileName">Configuration file</param>
+        public Task UploadConfigsAsync(string fileName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
