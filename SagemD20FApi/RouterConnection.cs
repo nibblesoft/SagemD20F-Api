@@ -49,25 +49,27 @@ namespace HackSagemRouter
             requestHeaders.Accept.ParseAdd("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
             requestHeaders.Connection.Add("keep-alive");
             //requestHeaders.Add("")
+            // requestHeaders.TryAddWithoutValidation()
         }
 
-        public async Task<HttpResponseMessage> SendAsync(string requestParams) // actionQuery
+        internal async Task<HttpResponseMessage> SendAsync(string requestParams)
         {
             return await _httpClient.GetAsync(requestParams).ConfigureAwait(false);
         }
 
         public async Task<string> GetSeasionKeyAsync()
         {
-            var response = /*await*/ _httpClient.GetAsync("wlmacflt.cmd?action=view").Result;
+            using (HttpResponseMessage response = await _httpClient.GetAsync("wlmacflt.cmd?action=view").ConfigureAwait(false))
+            {
+                //var responseCookies = _handler.CookieContainer.GetCookies(new Uri("http://192.168.1.1/wlmacflt.cmd?action=view")).Cast<Cookie>();
+                //foreach (var cookies in responseCookies)
+                //{
+                //}
 
-            //var responseCookies = _handler.CookieContainer.GetCookies(new Uri("http://192.168.1.1/wlmacflt.cmd?action=view")).Cast<Cookie>();
-            //foreach (var cookies in responseCookies)
-            //{
-            //}
-
-            // note: this needs to be fast because if page refresh a new session key will be generated
-            string htmlPage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return RegexSeasionKey.Match(htmlPage).Groups[1].Value;
+                // note: this needs to be fast because if page refresh a new session key will be generated
+                string htmlPage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return RegexSeasionKey.Match(htmlPage).Groups[1].Value;
+            }
         }
     }
 }

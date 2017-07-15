@@ -35,8 +35,7 @@
             this.buttonReboot = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.checkBoxMacFiltering = new System.Windows.Forms.CheckBox();
             this.buttonRemoveMac = new System.Windows.Forms.Button();
             this.buttonAddMac = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,8 +47,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonLogin = new System.Windows.Forms.Button();
+            this.buttonReAuthenticate = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -113,8 +113,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Controls.Add(this.checkBoxMacFiltering);
             this.groupBox3.Location = new System.Drawing.Point(20, 75);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(173, 73);
@@ -122,27 +121,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Mac filtering";
             // 
-            // radioButton1
+            // checkBoxMacFiltering
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(19, 31);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(58, 17);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Enable";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(95, 31);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(60, 17);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Disable";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.checkBoxMacFiltering.AutoSize = true;
+            this.checkBoxMacFiltering.Location = new System.Drawing.Point(35, 34);
+            this.checkBoxMacFiltering.Name = "checkBoxMacFiltering";
+            this.checkBoxMacFiltering.Size = new System.Drawing.Size(83, 17);
+            this.checkBoxMacFiltering.TabIndex = 6;
+            this.checkBoxMacFiltering.Text = "Mac filtering";
+            this.checkBoxMacFiltering.UseVisualStyleBackColor = true;
+            this.checkBoxMacFiltering.CheckedChanged += new System.EventHandler(this.checkBoxMacFiltering_CheckedChanged);
             // 
             // buttonRemoveMac
             // 
@@ -238,19 +226,19 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Connected users:";
             // 
-            // buttonLogin
+            // buttonReAuthenticate
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(165, 19);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(137, 23);
-            this.buttonLogin.TabIndex = 9;
-            this.buttonLogin.Text = "Re-Authenticate";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            this.buttonReAuthenticate.Location = new System.Drawing.Point(165, 19);
+            this.buttonReAuthenticate.Name = "buttonReAuthenticate";
+            this.buttonReAuthenticate.Size = new System.Drawing.Size(137, 23);
+            this.buttonReAuthenticate.TabIndex = 9;
+            this.buttonReAuthenticate.Text = "Re-Authenticate";
+            this.buttonReAuthenticate.UseVisualStyleBackColor = true;
+            this.buttonReAuthenticate.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.buttonLogin);
+            this.groupBox4.Controls.Add(this.buttonReAuthenticate);
             this.groupBox4.Location = new System.Drawing.Point(19, 106);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(308, 58);
@@ -258,11 +246,21 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Authentification:";
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(652, 428);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(60, 13);
+            this.labelStatus.TabIndex = 11;
+            this.labelStatus.Text = "Idle: Status";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 450);
+            this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -295,8 +293,6 @@
         private System.Windows.Forms.Button buttonRemoveMac;
         private System.Windows.Forms.Button buttonAddMac;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button buttonDisconnect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView listView1;
@@ -305,8 +301,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.Button buttonReAuthenticate;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox checkBoxMacFiltering;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
 

@@ -27,12 +27,18 @@
             RouterConnection = new RouterConnection(RouterAddress, new AuthenticationHeaderValue("Basic", hashedAuth));
         }
 
-        public void EnableMacFiltering()
+        public async Task EnableMacFilteringAsync()
         {
+            // TODO: Refactor: RouterConnection.GetSeasionKeyAsync().ConfigureAwait(false)
+            // inside RouterConnection.SendAsync to avoid duplicated codes.
+            string seasionKey = await RouterConnection.GetSeasionKeyAsync().ConfigureAwait(false);
+            await RouterConnection.SendAsync(ActionUrls.MacFiltering(true, seasionKey)).ConfigureAwait(false);
         }
 
-        public void DisableMacFilter()
+        public async Task DisableMacFilterAsync()
         {
+            string seasionKey = await RouterConnection.GetSeasionKeyAsync().ConfigureAwait(false);
+            await RouterConnection.SendAsync(ActionUrls.MacFiltering(false, seasionKey)).ConfigureAwait(false);
         }
 
         public async Task AddMacAddressAsync(string macAddress)
@@ -66,6 +72,17 @@
         {
             string contentString = await (await RouterConnection.SendAsync(ActionUrls.DeviceInfo)).Content.ReadAsStringAsync();
             return StringUtils.ParseDeviceInfos(contentString);
+        }
+
+
+        public object GetConfigurationsFromRouter()
+        {
+
+            // get status if mac filter is enable
+
+            // get mac of current connected client... from ARP (address resolution protocol) tab.
+
+            return null;
         }
 
     }

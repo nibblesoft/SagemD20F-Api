@@ -31,5 +31,14 @@ namespace HackSagemRouter
             // wlmacflt.cmd?action=add&wlFltMacAddr=90:4C:E5:04:D1:A1&wlSyncNvram=1&sessionKey=2084490365 HTTP/1.1
             return $"wlmacflt.cmd?action=add&wlFltMacAddr={macAddress.Trim()}&wlSyncNvram=1&sessionKey={seasionKey}";
         }
+
+        public static string MacFiltering(bool allow, string sessionKey)
+        {
+            // action = save
+            // wlFltMacMode	disabled
+            string status = allow ? "allow" : "disabled"; // and "deny"
+            // http://192.168.1.1/wlmacflt.cmd?action=save&wlmacflt=allow&sessionKey=169163972 
+            return $"wlmacflt.cmd?action=save&wlFltMacMode={status}&sessionKey={sessionKey}";
+        }
     }
 }
