@@ -1,5 +1,7 @@
 ﻿using HackSagemRouter;
 using System;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SagemRouterClient
@@ -91,20 +93,6 @@ namespace SagemRouterClient
             }
         }
 
-        private async void checkBoxMacFiltering_CheckedChanged(object sender, EventArgs e)
-        {
-            ControlStatus(false);
-            if (checkBoxMacFiltering.Checked)
-            {
-                await _sagemClient.EnableMacFilteringAsync().ConfigureAwait(false);
-
-            }
-            else
-            {
-                await _sagemClient.DisableMacFilterAsync().ConfigureAwait(false);
-            }
-        }
-
         private void ControlStatus(bool enableControls)
         {
             // disable all the button that perform http request
@@ -137,5 +125,44 @@ namespace SagemRouterClient
 
         private async void ButtonUploadConfigClickAsync(object sender, EventArgs e) =>
             await _sagemClient.UploadConfigsAsync(textBoxConfigs.Text).ConfigureAwait(false);
+
+        private async void buttonBackup_Click(object sender, EventArgs e)
+        {
+            using (var sfd = new SaveFileDialog())
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string xmlConfig = await _sagemClient.BackUpConfigsAsync();
+                    //using (var fs = new FileStream(sfd.FileName, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+                    //{
+                    //    fs.write
+                    //}
+                    File.WriteAllText(sfd.FileName, xmlConfig, Encoding.UTF8);
+                }
+            }
+        }
+
+        private async void buttonUpdateMacFiltering_Click(object sender, EventArgs e)
+        {
+            // NOTE: perform a reboot before sending enable/diable mac
+            // becaus router may freeze and prevent connection via RADIOS/WIRELESS...
+
+            ControlStatus(false);
+
+            // _sagemClient.RebootAsync().Wait(1000 * 5);
+
+            // Invalid: _sagemClient.EnableMacFilteringAsync().RunSynchronously();
+
+            // _sagemClient.RebootAsync().ContinueWith((t) => t.
+            if (checkBoxMacFiltering.Checked)
+            {
+                await _sagemClient.EnableMacFilteringAsync().ConfigureAwait(false);
+
+            }
+            else
+            {
+                await _sagemClient.DisableMacFilterAsync().ConfigureAwait(false);
+            }
+        }
     }
 }

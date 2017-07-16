@@ -34,6 +34,11 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonReboot = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.buttonBackup = new System.Windows.Forms.Button();
+            this.buttonUploadConfig = new System.Windows.Forms.Button();
+            this.buttonBrowseConfiFile = new System.Windows.Forms.Button();
+            this.textBoxConfigs = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBoxMacFiltering = new System.Windows.Forms.CheckBox();
             this.buttonRemoveMac = new System.Windows.Forms.Button();
@@ -50,15 +55,16 @@
             this.buttonReAuthenticate = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.labelStatus = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBoxConfigs = new System.Windows.Forms.TextBox();
-            this.buttonBrowseConfiFile = new System.Windows.Forms.Button();
-            this.buttonUploadConfig = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.buttonIsConnected = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonUpdateMacFiltering = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -112,13 +118,64 @@
             this.groupBox2.Controls.Add(this.textBoxMac);
             this.groupBox2.Location = new System.Drawing.Point(333, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(379, 158);
+            this.groupBox2.Size = new System.Drawing.Size(379, 199);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mac:";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.buttonBackup);
+            this.groupBox5.Controls.Add(this.buttonUploadConfig);
+            this.groupBox5.Controls.Add(this.buttonBrowseConfiFile);
+            this.groupBox5.Controls.Add(this.textBoxConfigs);
+            this.groupBox5.Location = new System.Drawing.Point(199, 75);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(174, 118);
+            this.groupBox5.TabIndex = 7;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Configurations:";
+            // 
+            // buttonBackup
+            // 
+            this.buttonBackup.Location = new System.Drawing.Point(99, 89);
+            this.buttonBackup.Name = "buttonBackup";
+            this.buttonBackup.Size = new System.Drawing.Size(75, 23);
+            this.buttonBackup.TabIndex = 3;
+            this.buttonBackup.Text = "Backup";
+            this.buttonBackup.UseVisualStyleBackColor = true;
+            this.buttonBackup.Click += new System.EventHandler(this.buttonBackup_Click);
+            // 
+            // buttonUploadConfig
+            // 
+            this.buttonUploadConfig.Location = new System.Drawing.Point(6, 44);
+            this.buttonUploadConfig.Name = "buttonUploadConfig";
+            this.buttonUploadConfig.Size = new System.Drawing.Size(89, 23);
+            this.buttonUploadConfig.TabIndex = 2;
+            this.buttonUploadConfig.Text = "Upload configs";
+            this.buttonUploadConfig.UseVisualStyleBackColor = true;
+            this.buttonUploadConfig.Click += new System.EventHandler(this.ButtonUploadConfigClickAsync);
+            // 
+            // buttonBrowseConfiFile
+            // 
+            this.buttonBrowseConfiFile.Location = new System.Drawing.Point(143, 20);
+            this.buttonBrowseConfiFile.Name = "buttonBrowseConfiFile";
+            this.buttonBrowseConfiFile.Size = new System.Drawing.Size(25, 23);
+            this.buttonBrowseConfiFile.TabIndex = 1;
+            this.buttonBrowseConfiFile.Text = ",..";
+            this.buttonBrowseConfiFile.UseVisualStyleBackColor = true;
+            this.buttonBrowseConfiFile.Click += new System.EventHandler(this.buttonBrowseConfiFile_Click);
+            // 
+            // textBoxConfigs
+            // 
+            this.textBoxConfigs.Location = new System.Drawing.Point(6, 21);
+            this.textBoxConfigs.Name = "textBoxConfigs";
+            this.textBoxConfigs.Size = new System.Drawing.Size(131, 20);
+            this.textBoxConfigs.TabIndex = 0;
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonUpdateMacFiltering);
             this.groupBox3.Controls.Add(this.checkBoxMacFiltering);
             this.groupBox3.Location = new System.Drawing.Point(20, 75);
             this.groupBox3.Name = "groupBox3";
@@ -130,13 +187,12 @@
             // checkBoxMacFiltering
             // 
             this.checkBoxMacFiltering.AutoSize = true;
-            this.checkBoxMacFiltering.Location = new System.Drawing.Point(35, 34);
+            this.checkBoxMacFiltering.Location = new System.Drawing.Point(6, 32);
             this.checkBoxMacFiltering.Name = "checkBoxMacFiltering";
             this.checkBoxMacFiltering.Size = new System.Drawing.Size(83, 17);
             this.checkBoxMacFiltering.TabIndex = 6;
             this.checkBoxMacFiltering.Text = "Mac filtering";
             this.checkBoxMacFiltering.UseVisualStyleBackColor = true;
-            this.checkBoxMacFiltering.CheckedChanged += new System.EventHandler(this.checkBoxMacFiltering_CheckedChanged);
             // 
             // buttonRemoveMac
             // 
@@ -196,9 +252,9 @@
             this.columnHeader4});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(19, 186);
+            this.listView1.Location = new System.Drawing.Point(19, 255);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(693, 239);
+            this.listView1.Size = new System.Drawing.Size(693, 170);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -226,7 +282,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 170);
+            this.label3.Location = new System.Drawing.Point(16, 239);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 8;
@@ -261,50 +317,49 @@
             this.labelStatus.TabIndex = 11;
             this.labelStatus.Text = "Idle: Status";
             // 
-            // groupBox5
+            // groupBox6
             // 
-            this.groupBox5.Controls.Add(this.buttonUploadConfig);
-            this.groupBox5.Controls.Add(this.buttonBrowseConfiFile);
-            this.groupBox5.Controls.Add(this.textBoxConfigs);
-            this.groupBox5.Location = new System.Drawing.Point(199, 75);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(174, 73);
-            this.groupBox5.TabIndex = 7;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Configurations:";
+            this.groupBox6.Controls.Add(this.buttonIsConnected);
+            this.groupBox6.Controls.Add(this.textBox1);
+            this.groupBox6.Location = new System.Drawing.Point(19, 170);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(308, 66);
+            this.groupBox6.TabIndex = 12;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Check for connected user:";
             // 
-            // textBoxConfigs
+            // buttonIsConnected
             // 
-            this.textBoxConfigs.Location = new System.Drawing.Point(6, 21);
-            this.textBoxConfigs.Name = "textBoxConfigs";
-            this.textBoxConfigs.Size = new System.Drawing.Size(131, 20);
-            this.textBoxConfigs.TabIndex = 0;
+            this.buttonIsConnected.Location = new System.Drawing.Point(217, 24);
+            this.buttonIsConnected.Name = "buttonIsConnected";
+            this.buttonIsConnected.Size = new System.Drawing.Size(85, 23);
+            this.buttonIsConnected.TabIndex = 1;
+            this.buttonIsConnected.Text = "Is Connected?";
+            this.buttonIsConnected.UseVisualStyleBackColor = true;
             // 
-            // buttonBrowseConfiFile
+            // textBox1
             // 
-            this.buttonBrowseConfiFile.Location = new System.Drawing.Point(143, 20);
-            this.buttonBrowseConfiFile.Name = "buttonBrowseConfiFile";
-            this.buttonBrowseConfiFile.Size = new System.Drawing.Size(25, 23);
-            this.buttonBrowseConfiFile.TabIndex = 1;
-            this.buttonBrowseConfiFile.Text = ",..";
-            this.buttonBrowseConfiFile.UseVisualStyleBackColor = true;
-            this.buttonBrowseConfiFile.Click += new System.EventHandler(this.buttonBrowseConfiFile_Click);
+            this.textBox1.Location = new System.Drawing.Point(6, 25);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(205, 20);
+            this.textBox1.TabIndex = 0;
             // 
-            // buttonUploadConfig
+            // buttonUpdateMacFiltering
             // 
-            this.buttonUploadConfig.Location = new System.Drawing.Point(6, 44);
-            this.buttonUploadConfig.Name = "buttonUploadConfig";
-            this.buttonUploadConfig.Size = new System.Drawing.Size(89, 23);
-            this.buttonUploadConfig.TabIndex = 2;
-            this.buttonUploadConfig.Text = "Upload configs";
-            this.buttonUploadConfig.UseVisualStyleBackColor = true;
-            this.buttonUploadConfig.Click += new System.EventHandler(this.ButtonUploadConfigClickAsync);
+            this.buttonUpdateMacFiltering.Location = new System.Drawing.Point(92, 32);
+            this.buttonUpdateMacFiltering.Name = "buttonUpdateMacFiltering";
+            this.buttonUpdateMacFiltering.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdateMacFiltering.TabIndex = 7;
+            this.buttonUpdateMacFiltering.Text = "Update";
+            this.buttonUpdateMacFiltering.UseVisualStyleBackColor = true;
+            this.buttonUpdateMacFiltering.Click += new System.EventHandler(this.buttonUpdateMacFiltering_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 450);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label3);
@@ -319,11 +374,13 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,6 +413,11 @@
         private System.Windows.Forms.Button buttonUploadConfig;
         private System.Windows.Forms.Button buttonBrowseConfiFile;
         private System.Windows.Forms.TextBox textBoxConfigs;
+        private System.Windows.Forms.Button buttonBackup;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button buttonIsConnected;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonUpdateMacFiltering;
     }
 }
 

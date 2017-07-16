@@ -25,20 +25,6 @@ namespace HackSagemRouter
             //_cookieContainer.Add(baseAddress, new Cookie("sagem", "sagem_value"));
             _httpClient.DefaultRequestHeaders.Authorization = auth;
             BuildRequestHeader(_httpClient.DefaultRequestHeaders);
-
-            // _httpClient.DefaultRequestHeaders.Authorization = 
-            //GET http://192.168.1.1/wancfg.cmd?action=refresh HTTP/1.1
-            //Host: 192.168.1.1
-            //Connection: keep - alive
-            //Cache - Control: max - age = 0
-            //Authorization: Basic YWRtaW46My4xNDE1
-            //Upgrade - Insecure - Requests: 1
-            //User - Agent: Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 57.0.2987.88 Safari / 537.36
-            //Accept: text / html,application / xhtml + xml,application / xml; q = 0.9,image / webp,*/*;q=0.8
-            //DNT: 1
-            //Referer: http://192.168.1.1/wancfg.cmd?action=refresh
-            //Accept-Encoding: gzip, deflate, sdch
-            //Accept-Language: en-US,en;q=0.8,pt;q=0.6
         }
 
         private static void BuildRequestHeader(HttpRequestHeaders requestHeaders)
@@ -70,6 +56,12 @@ namespace HackSagemRouter
                 string htmlPage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return RegexSeasionKey.Match(htmlPage).Groups[1].Value;
             }
+        }
+
+        public async Task<string> BackUpConfigs()
+        {
+            string xmlConfigString = await _httpClient.GetStringAsync("/backupsettings.conf").ConfigureAwait(false);
+            return xmlConfigString;
         }
     }
 }

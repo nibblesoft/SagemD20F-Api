@@ -8,7 +8,6 @@ namespace HackSagemRouter
 {
     public class ActionUrls
     {
-        // TODO: Use dictionary instead!
         public const string ActionView = "?action=view";
         public const string ActionRemove = "wlmacflt.cmd?action=remove";
         public const string ActionRebot = "wancfg.cmd?action=reboot";

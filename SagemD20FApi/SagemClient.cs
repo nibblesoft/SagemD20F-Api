@@ -53,20 +53,11 @@
             await RouterConnection.SendAsync(ActionUrls.MacAddressRemove(macAddress, seasionKey)).ConfigureAwait(false);
         }
 
-        public Task RebootAsync()
-        {
-            return RouterConnection.SendAsync(ActionUrls.ActionRebot);
-        }
+        public Task RebootAsync() => RouterConnection.SendAsync(ActionUrls.ActionRebot);
 
-        public Task RefreshAsync()
-        {
-            return RouterConnection.SendAsync(ActionUrls.ActionRefresh);
-        }
+        public Task RefreshAsync() => RouterConnection.SendAsync(ActionUrls.ActionRefresh);
 
-        public Task TestConnectionAsync()
-        {
-            return RouterConnection.SendAsync(string.Empty);
-        }
+        public Task TestConnectionAsync() => RouterConnection.SendAsync(string.Empty);
 
         public async Task<IList<DeviceInfo>> GetDeviesInfoAsync()
         {
@@ -93,5 +84,8 @@
         {
             throw new NotImplementedException();
         }
+
+        public Task<string> BackUpConfigsAsync() => RouterConnection.BackUpConfigs();
+
     }
 }
