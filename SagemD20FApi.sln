@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26929.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagemD20FApi", "SagemD20FApi\SagemD20FApi.csproj", "{D998F8D5-6535-4A32-97D0-1486AC37EA2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagemRouterClient", "SagemRouterClient\SagemRouterClient.csproj", "{6CE9E4E3-9C0C-46DD-BC43-4BC018BAAE68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console.Test", "Console.Test\Console.Test.csproj", "{22015A16-0C88-44B4-888D-C0A546992D58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagemD20Log", "SagemD20Log\SagemD20Log.csproj", "{ADB0FF1F-EEC6-461A-A1A9-668B801451C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,19 @@ Global
 		{6CE9E4E3-9C0C-46DD-BC43-4BC018BAAE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE9E4E3-9C0C-46DD-BC43-4BC018BAAE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CE9E4E3-9C0C-46DD-BC43-4BC018BAAE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22015A16-0C88-44B4-888D-C0A546992D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22015A16-0C88-44B4-888D-C0A546992D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22015A16-0C88-44B4-888D-C0A546992D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22015A16-0C88-44B4-888D-C0A546992D58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB0FF1F-EEC6-461A-A1A9-668B801451C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB0FF1F-EEC6-461A-A1A9-668B801451C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB0FF1F-EEC6-461A-A1A9-668B801451C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB0FF1F-EEC6-461A-A1A9-668B801451C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4659C094-DEA0-4215-A9FC-84467F56C72D}
 	EndGlobalSection
 EndGlobal

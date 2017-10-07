@@ -1,7 +1,9 @@
 ﻿using HackSagemRouter;
+using HackSagemRouter.Models;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SagemRouterClient
@@ -12,6 +14,7 @@ namespace SagemRouterClient
         // period of time to the router.
         private Timer _timer;
         private SagemClient _sagemClient;
+        int _timerCount = 10;
 
         public Main()
         {
@@ -30,9 +33,11 @@ namespace SagemRouterClient
             _timer = new Timer();
             _timer.Tick += _timer_Tick;
             _timer.Interval = 1000 * 1;
+
+            // not working because the operatoin wasn't awaited by main thread. very interesting issues.
+            // ReloadListViewDevices();
         }
 
-        int _timerCount = 10;
         private void _timer_Tick(object sender, EventArgs e)
         {
             if (_timerCount == 0)
@@ -58,6 +63,7 @@ namespace SagemRouterClient
         private async void buttonRefresh_Click(object sender, EventArgs e)
         {
             ControlStatus(false);
+            await ReloadListViewDevices();
             await _sagemClient.RefreshAsync().ConfigureAwait(false);
         }
 
@@ -104,7 +110,7 @@ namespace SagemRouterClient
             checkBoxMacFiltering.Enabled = enableControls;
             buttonRefresh.Enabled = enableControls;
             buttonReAuthenticate.Enabled = enableControls;
-
+            // Task.Delay()
             if (!enableControls)
             {
                 _timer.Start();
@@ -163,6 +169,36 @@ namespace SagemRouterClient
             {
                 await _sagemClient.DisableMacFilterAsync().ConfigureAwait(false);
             }
+        }
+
+        private async void ButtonDisconnect_Click(object sender, EventArgs e)
+        {
+            // call router ip to disable connection
+            await _sagemClient.DisconnectAsync().ConfigureAwait(false);
+        }
+
+        private async Task ReloadListViewDevices()
+        {
+            var devices = await _sagemClient.GetDeviesInfoAsync();
+
+            listView1.BeginUpdate();
+            listView1.Items.Clear();
+            foreach (DeviceInfo device in devices)
+            {
+                var lvi = new ListViewItem(device.Hostname);
+                lvi.SubItems.Add(device.MacAddress);
+                lvi.SubItems.Add(device.IpAddress);
+                lvi.SubItems.Add(device.ExpiresIn.ToString(("dd/MM/yyyy H:mm:ss")));
+
+                listView1.Items.Add(lvi);
+            }
+            listView1.EndUpdate();
+
+        }
+
+        private async void buttonConnect_Click(object sender, EventArgs e)
+        {
+            await _sagemClient.ConnectAsync().ConfigureAwait(false);
         }
     }
 }

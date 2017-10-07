@@ -3,6 +3,7 @@
     using HackSagemRouter.Models;
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Utils;
@@ -25,6 +26,21 @@
 
             string hashedAuth = StringUtils.EncodeToBase64(UserName, Password);
             RouterConnection = new RouterConnection(RouterAddress, new AuthenticationHeaderValue("Basic", hashedAuth));
+
+            /*
+            var credentialCache = new CredentialCache();
+            NetworkCredential networkCrednetial = new NetworkCredential(userName, password);
+            */
+        }
+
+        /// <summary>
+        /// This is less efficient than Sagem(string userName, string password)
+        /// after using this constructor to create instance, for every request the client must send 2 requets.
+        /// </summary>
+        /// <param name="credentials">Credential that will be used to authenticate</param>
+        public SagemClient(ICredentials credentials)
+        {
+            RouterConnection = new RouterConnection(RouterAddress, credentials);
         }
 
         public async Task EnableMacFilteringAsync()
@@ -59,12 +75,18 @@
 
         public Task TestConnectionAsync() => RouterConnection.SendAsync(string.Empty);
 
-        public async Task<IList<DeviceInfo>> GetDeviesInfoAsync()
-        {
-            string contentString = await (await RouterConnection.SendAsync(ActionUrls.DeviceInfo)).Content.ReadAsStringAsync();
-            return StringUtils.ParseDeviceInfos(contentString);
-        }
+        //[Obsolete]
+        //public async Task<IList<DeviceInfo>> GetDeviesInfoAsync()
+        //{
+        //    string contentString = await (await RouterConnection.SendAsync(ActionUrls.DeviceInfo)).Content.ReadAsStringAsync();
+        //    return StringUtils.ParseDeviceInfos(contentString);
+        //}
 
+        public Task<IReadOnlyCollection<DeviceInfo>> GetDeviesInfoAsync()
+        {
+            // note: once method contain async should always rturn awaited* task-result.
+            return RouterConnection.GetDevicesAsync();
+        }
 
         public object GetConfigurationsFromRouter()
         {
@@ -87,5 +109,8 @@
 
         public Task<string> BackUpConfigsAsync() => RouterConnection.BackUpConfigs();
 
+        public Task DisconnectAsync() => RouterConnection.SendAsync(ActionUrls.ActionDisconect);
+
+        public Task ConnectAsync() => RouterConnection.SendAsync(ActionUrls.ActionConnect);
     }
 }

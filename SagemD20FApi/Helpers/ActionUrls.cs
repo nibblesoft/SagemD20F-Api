@@ -8,6 +8,10 @@ namespace HackSagemRouter
 {
     public class ActionUrls
     {
+        // wancfg.cmd?action=pppinterconn&pppcmd=Disconnect
+        // TODO: Make this dynamic, so users can specify ppp {username} and {password}
+        public const string ActionConnect = "wancfg.cmd?action=pppinterconn&pppcmd=Connect&pppUserName=cai0013&pppPassword=cai0013&dddd=kkkk";
+        public const string ActionDisconect = "wancfg.cmd?action=pppinterconn&pppcmd=Disconnect";
         public const string ActionView = "?action=view";
         public const string ActionRemove = "wlmacflt.cmd?action=remove";
         public const string ActionRebot = "wancfg.cmd?action=reboot";

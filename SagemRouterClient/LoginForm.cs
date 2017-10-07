@@ -18,6 +18,16 @@ namespace SagemRouterClient
         public LoginForm()
         {
             InitializeComponent();
+            string userName = GetVariableValue("router_username");
+            string password = GetVariableValue("router_password");
+            if (!string.IsNullOrEmpty(userName))
+            {
+                textBoxUserName.Text = userName;
+            }
+            if (!string.IsNullOrEmpty(password))
+            {
+                textBoxPassword.Text = password;
+            }
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -28,5 +38,7 @@ namespace SagemRouterClient
 
             DialogResult = DialogResult.OK;
         }
+
+        private static string GetVariableValue(string varName) => Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.User);
     }
 }

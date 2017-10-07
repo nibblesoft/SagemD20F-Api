@@ -40,6 +40,7 @@
             this.buttonBrowseConfiFile = new System.Windows.Forms.Button();
             this.textBoxConfigs = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonUpdateMacFiltering = new System.Windows.Forms.Button();
             this.checkBoxMacFiltering = new System.Windows.Forms.CheckBox();
             this.buttonRemoveMac = new System.Windows.Forms.Button();
             this.buttonAddMac = new System.Windows.Forms.Button();
@@ -55,42 +56,40 @@
             this.buttonReAuthenticate = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.labelStatus = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.buttonIsConnected = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonUpdateMacFiltering = new System.Windows.Forms.Button();
+            this.buttonConnect = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonConnect);
             this.groupBox1.Controls.Add(this.buttonDisconnect);
             this.groupBox1.Controls.Add(this.buttonRefresh);
             this.groupBox1.Controls.Add(this.buttonReboot);
             this.groupBox1.Location = new System.Drawing.Point(19, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(308, 78);
+            this.groupBox1.Size = new System.Drawing.Size(308, 135);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General:";
             // 
             // buttonDisconnect
             // 
-            this.buttonDisconnect.Location = new System.Drawing.Point(22, 29);
+            this.buttonDisconnect.Location = new System.Drawing.Point(22, 75);
             this.buttonDisconnect.Name = "buttonDisconnect";
             this.buttonDisconnect.Size = new System.Drawing.Size(75, 23);
             this.buttonDisconnect.TabIndex = 2;
             this.buttonDisconnect.Text = "Disconnect";
             this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.ButtonDisconnect_Click);
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(119, 29);
+            this.buttonRefresh.Location = new System.Drawing.Point(117, 75);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
             this.buttonRefresh.TabIndex = 1;
@@ -100,7 +99,7 @@
             // 
             // buttonReboot
             // 
-            this.buttonReboot.Location = new System.Drawing.Point(210, 29);
+            this.buttonReboot.Location = new System.Drawing.Point(117, 46);
             this.buttonReboot.Name = "buttonReboot";
             this.buttonReboot.Size = new System.Drawing.Size(75, 23);
             this.buttonReboot.TabIndex = 0;
@@ -183,6 +182,16 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Mac filtering";
+            // 
+            // buttonUpdateMacFiltering
+            // 
+            this.buttonUpdateMacFiltering.Location = new System.Drawing.Point(92, 32);
+            this.buttonUpdateMacFiltering.Name = "buttonUpdateMacFiltering";
+            this.buttonUpdateMacFiltering.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdateMacFiltering.TabIndex = 7;
+            this.buttonUpdateMacFiltering.Text = "Update";
+            this.buttonUpdateMacFiltering.UseVisualStyleBackColor = true;
+            this.buttonUpdateMacFiltering.Click += new System.EventHandler(this.buttonUpdateMacFiltering_Click);
             // 
             // checkBoxMacFiltering
             // 
@@ -301,9 +310,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.buttonReAuthenticate);
-            this.groupBox4.Location = new System.Drawing.Point(19, 106);
+            this.groupBox4.Location = new System.Drawing.Point(19, 163);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(308, 58);
+            this.groupBox4.Size = new System.Drawing.Size(314, 58);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Authentification:";
@@ -317,49 +326,21 @@
             this.labelStatus.TabIndex = 11;
             this.labelStatus.Text = "Idle: Status";
             // 
-            // groupBox6
+            // buttonConnect
             // 
-            this.groupBox6.Controls.Add(this.buttonIsConnected);
-            this.groupBox6.Controls.Add(this.textBox1);
-            this.groupBox6.Location = new System.Drawing.Point(19, 170);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(308, 66);
-            this.groupBox6.TabIndex = 12;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Check for connected user:";
-            // 
-            // buttonIsConnected
-            // 
-            this.buttonIsConnected.Location = new System.Drawing.Point(217, 24);
-            this.buttonIsConnected.Name = "buttonIsConnected";
-            this.buttonIsConnected.Size = new System.Drawing.Size(85, 23);
-            this.buttonIsConnected.TabIndex = 1;
-            this.buttonIsConnected.Text = "Is Connected?";
-            this.buttonIsConnected.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // buttonUpdateMacFiltering
-            // 
-            this.buttonUpdateMacFiltering.Location = new System.Drawing.Point(92, 32);
-            this.buttonUpdateMacFiltering.Name = "buttonUpdateMacFiltering";
-            this.buttonUpdateMacFiltering.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpdateMacFiltering.TabIndex = 7;
-            this.buttonUpdateMacFiltering.Text = "Update";
-            this.buttonUpdateMacFiltering.UseVisualStyleBackColor = true;
-            this.buttonUpdateMacFiltering.Click += new System.EventHandler(this.buttonUpdateMacFiltering_Click);
+            this.buttonConnect.Location = new System.Drawing.Point(22, 46);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(75, 23);
+            this.buttonConnect.TabIndex = 3;
+            this.buttonConnect.Text = "Connect";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 450);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label3);
@@ -379,8 +360,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,10 +393,8 @@
         private System.Windows.Forms.Button buttonBrowseConfiFile;
         private System.Windows.Forms.TextBox textBoxConfigs;
         private System.Windows.Forms.Button buttonBackup;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button buttonIsConnected;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonUpdateMacFiltering;
+        private System.Windows.Forms.Button buttonConnect;
     }
 }
 
