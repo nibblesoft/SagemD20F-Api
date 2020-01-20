@@ -20,6 +20,7 @@ namespace SagemRouterClient
             InitializeComponent();
             string userName = GetVariableValue("router_username");
             string password = GetVariableValue("router_password");
+
             if (!string.IsNullOrEmpty(userName))
             {
                 textBoxUserName.Text = userName;
@@ -28,6 +29,7 @@ namespace SagemRouterClient
             {
                 textBoxPassword.Text = password;
             }
+
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -37,6 +39,8 @@ namespace SagemRouterClient
             Password = textBoxPassword.Text;
 
             DialogResult = DialogResult.OK;
+
+            MessageBox.Show("Note: this won't login the user directly into the client router!");
         }
 
         private static string GetVariableValue(string varName) => Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.User);
